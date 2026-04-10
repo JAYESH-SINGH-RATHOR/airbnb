@@ -5,6 +5,8 @@ export const index  = async (req, res) => {
     res.render("listings/index", { allListing });
 }
 
+
+
 export const newForm  = (req, res) => {
     res.render("listings/form");
 }
@@ -22,12 +24,19 @@ export const showRoute = async (req, res) => {
 }
 
 export const createListing = async (req, res) => {
-        const newListing = new Listing(req.body.listings);
-        newListing.owner = req.user._id;
-        await newListing.save();
-        req.flash("success" , "Listing created successfully");
-       return res.redirect("/listing");
-    }
+    const { path: url, filename } = req.file;
+
+    const newListing = new Listing(req.body.listings);
+
+    newListing.owner = req.user._id;
+
+    newListing.imgaes = { url, filename };
+
+    await newListing.save();
+
+    req.flash("success", "Listing created successfully");
+    return res.redirect("/listing");
+};
 
 export const editForm = async (req, res) => {
     const { id } = req.params;

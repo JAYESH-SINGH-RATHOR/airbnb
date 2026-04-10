@@ -1,3 +1,7 @@
+import dotenv from "dotenv";
+if(process.env.NODE_ENV !== "production"){
+    dotenv.config();
+}
 import express from "express";
 import mongoose from "mongoose";
 import path from "path";
@@ -112,6 +116,9 @@ app.use((req, res, next) => {
     next(new ExpressError(404, "Page Not Found"));
 });
 
+
+
+// global error handlling middleware
 
 app.use((err, req, res, next) => {
     const { statusCode = 500, message = "Something went wrong" } = err;

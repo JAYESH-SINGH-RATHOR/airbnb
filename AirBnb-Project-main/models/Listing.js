@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 import Review from "./Review.js";
+import { url } from "inspector";
 const listingSchema = new Schema({
     title:{
         type:String,
@@ -8,8 +9,8 @@ const listingSchema = new Schema({
     },
     description:String,
     imgaes:{
-        type:String,
-
+        url:String,
+        filename:String
     },
     Price:{
         type:Number,

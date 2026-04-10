@@ -9,23 +9,22 @@ import { signupage , signupform , loginform , login , logoutt} from "../controll
 
 /* ================= SIGNUP ================= */
 
-router.get("/signup", signupform);
 
-router.post("/signup", wrapAsync(signupage));
+router.route("/signup").get(signupage).post(wrapAsync(signupage));
+
+
 
 /* ================= LOGIN ================= */
 
 router.get("/login", loginform );
 
-router.post(
-    "/login",
-    saveRedirectUrl,
-    passport.authenticate("local", {
+router.route("/login").get(loginform).post(saveRedirectUrl , passport.authenticate("local", {
         failureFlash: true,
         failureRedirect: "/login"
     }),
   login
 );
+
 
 /* ================= LOGOUT ================= */
 
