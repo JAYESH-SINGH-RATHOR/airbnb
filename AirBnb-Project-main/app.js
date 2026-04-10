@@ -120,10 +120,10 @@ app.use((req, res, next) => {
 
 // global error handlling middleware
 
-app.use((err, req, res, next) => {
-    const { statusCode = 500, message = "Something went wrong" } = err;
-    res.status(statusCode).render("error", { message });
-});
+// app.use((err, req, res, next) => {
+//     const { statusCode = 500, message = "Something went wrong" } = err;
+//     res.status(statusCode).render("error", { message });
+// });
 
 /* ---------------- SERVER ---------------- */
 app.listen(port, () => {

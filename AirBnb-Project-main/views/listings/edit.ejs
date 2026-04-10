@@ -2,16 +2,21 @@
 <div class="row">
     <div class="col-8 offset-2">
     <h2 class="mt-3">Edit your current Listing </h2>
-    <form method="post" action="/listing/<%= listing._id %>?_method=PUT">
+    <form method="post" action="/listing/<%= listing._id %>?_method=PUT" enctype="multipart/form-data">
 
         <div class="mt-3">
             <label for="title" class="form-label">Title</label>
             <input name="listings[title]" class="form-control" value="<%= listing.title  %>" type="text" />
         </div>
 
+        <div class="mt-3 ">
+            Previous Uploaded Image : <br>
+           <img src="<%= originalimagesurl %>" alt="" style="height: 10rem; width: 10rem;">
+        </div>
+
         <div class="mt-3">
-            <label for="imgaes" class="form-label">Image</label>
-            <input name="listings[imgaes]" class="form-control" value="<%= listing.imgaes.url  %>" type="text" />
+            <label for="imgaes" class="form-label">UpLoad New Image</label>
+            <input name="imgaes" class="form-control" type="file" />
         </div>
 
         <div class="row">

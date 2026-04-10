@@ -45,12 +45,22 @@ export const editForm = async (req, res) => {
         req.flash("error" , "Listing that you are trying to edit is not extists");
         res.redirect("/listing");
     }
-    res.render("listings/edit", { listing });
+    let originalimagesurl = listing.imgaes.url;
+    originalimagesurl = originalimagesurl.replace("/upload" , "/upload/h_300,w_250");
+    res.render("listings/edit", { listing ,  originalimagesurl});
 }
 
 export const update = async (req, res) => {
     const { id } = req.params;
-    await Listing.findByIdAndUpdate(id, req.body.listings);
+    
+    let listing = await Listing.findByIdAndUpdate(id, req.body.listings);
+
+    if( typeof req.file !== "undefined"){
+    let { path : url , filename} = req.file;
+    listing.imgaes = { url, filename };
+    await listing.save();
+    }
+
     req.flash("success", "Listing updated successfully");
     res.redirect(`/listing/${id}`);
   }

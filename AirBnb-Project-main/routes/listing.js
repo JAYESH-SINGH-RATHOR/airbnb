@@ -21,7 +21,7 @@ routes.get("/new", isLoggedin , newForm );
 /* SHOW */
 // routes.get("/:id", wrapAsync(showRoute));
 
-routes.route("/:id").get(wrapAsync(showRoute)).put(isLoggedin , isowner , validateListing , wrapAsync(update)).delete(isLoggedin ,isowner, wrapAsync(deleteee));;
+routes.route("/:id").get(wrapAsync(showRoute)).put(isLoggedin , isowner , upload.single("imgaes") , validateListing , wrapAsync(update)).delete(isLoggedin ,isowner, wrapAsync(deleteee));;
 
 /* CREATE */
 
